@@ -22,6 +22,15 @@
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
+    img {
+      background: var(--base);
+      padding: var(--spacing);
+      filter: blur(var(--blur));
+    }
+  
+    .hl {
+      color: var(--base);
+    }
 
     /*
       misc styles, nothing to do with CSS variables
@@ -46,6 +55,30 @@
   </style>
 
   <script>
+    const img = document.querySelector('img');
+    const spacing = document.querySelector('#spacing');
+    const blur = document.querySelector('#blur');
+    const color = document.querySelector('#base');
+    const hl = document.querySelector('.hl');
+    hl.style.color = `${color.value}`;
+    img.style.background = `${color.value}`;
+    img.style.padding = `${spacing.value}px`;
+    img.style.filter = `blur(${blur.value}px)`;
+    const handleSpacingChange = e => {
+      img.style.padding = `${e.target.value}px`;
+    };
+    const handleColorChange = e => {
+      img.style.background = `${e.target.value}`;
+      hl.style.color = `${e.target.value}`;
+    };
+    const handleBlurChange = e => {
+      img.style.filter = `blur(${e.target.value}px)`;
+    };
+    spacing.addEventListener('change', handleSpacingChange);
+    spacing.addEventListener('mousemove', handleSpacingChange);
+    blur.addEventListener('change', handleBlurChange);
+    blur.addEventListener('mousemove', handleBlurChange);
+    color.addEventListener('change', handleColorChange);
   </script>
 
 </body>

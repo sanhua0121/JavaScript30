@@ -63,12 +63,29 @@
       background: black;
       position: absolute;
       top: 50%;
+      transform-origin: 100%;
     }
 
   </style>
 
   <script>
+    const rotate = () => {
+      const second = new Date().getSeconds();
+      const minutes = new Date().getMinutes();
+      const hours = new Date().getHours();
+      const secondhand = document.querySelector('.second-hand');
+      const minuteshand = document.querySelector('.min-hand');
+      const hourshand = document.querySelector('.hour-hand');
+      console.log(10 % 12);
+      secondhand.style.transform = `rotate(${second * 6 + 90}deg)`;
+      minuteshand.style.transform = `rotate(${(minutes + second / 60) * 6 + 90}deg)`;
+      hourshand.style.transform = `rotate(${(hours % 12) * 30 + 90 + minutes / 2}deg)`;
+    };
 
+
+    setInterval(() => {
+      rotate();
+    }, 1000);
 
   </script>
 </body>
